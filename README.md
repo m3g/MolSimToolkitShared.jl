@@ -1,3 +1,6 @@
 # MolSimToolkitShared
 
-[![Build Status](https://github.com/m3g/MolSimToolkitShared.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/m3g/MolSimToolkitShared.jl/actions/workflows/CI.yml?query=branch%3Amain)
+This package is a placeholder for functions that will be shared
+among other packages. The packages must import the functions
+from here for optimal interoperability.
+
