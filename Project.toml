@@ -1,7 +1,7 @@
 name = "MolSimToolkitShared"
 uuid = "aea21201-7910-416e-b888-414710bebccb"
 authors = ["Leandro Martinez <lmartine@unicamp.br> and contributors"]
-version = "1.0.0"
+version = "1.0.1-DEV"
 
 [compat]
 julia = "1.6.7"
