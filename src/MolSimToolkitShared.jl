@@ -9,8 +9,17 @@ using StaticArrays: SVector, MMatrix, SMatrix
 # Currently only shared function names
 function distance end
 function distances end
-function coordination_number end
 function bulk_coordination end
+
+function coordination_number(::String, args...; kargs...)
+    throw(ArgumentError("""\n
+        Invalid arguments for the `coordination_number` function.
+        Plese check the documentation for the correct call signature, by typing:
+
+        julia> ? coordination_number
+
+    """))
+end
 
 # Utility functions
 include("./wrap.jl")
