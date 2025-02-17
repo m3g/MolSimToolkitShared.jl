@@ -1,6 +1,11 @@
 using MolSimToolkitShared
-using Test
+using TestItemRunner
 
-@testset "MolSimToolkitShared.jl" begin
-    # Write your tests here.
+@run_package_tests
+
+@testitem "Aqua.test_all" begin
+    import Aqua
+    Aqua.test_all(
+        MolSimToolkitShared;
+    )
 end
