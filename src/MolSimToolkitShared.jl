@@ -20,6 +20,11 @@ function coordination_number(::String, args...; kargs...)
 
     """))
 end
+@testitem "coordination_number" begin
+    import MolSimToolkitShared: coordination_number
+    # The coordination_number(::String, args...; kargs...) is a placeholder for the docs only
+    @test_throws ArgumentError coordination_number("string.txt", 1.0)
+end
 
 # Utility functions
 include("./wrap.jl")
