@@ -1,17 +1,26 @@
 module MolSimToolkitShared
 
-function center_of_mass end
-function distances end
+using Compat: @compat
+using TestItems: @testitem
 
+using LinearAlgebra: eigvecs
+using StaticArrays: SVector, MMatrix, SMatrix
+
+# Currently only shared function names
+function distance end
+function distances end
 function coordination_number end
 function bulk_coordination end
 
-function wrap end
-function wrap_to_first end
+# Utility functions
+include("./wrap.jl")
+include("./structural_alignment.jl")
 
-function align end
-function align! end
-function rmsd end
-function rmsd_matrix end
+# Public API
+@compat public distance, distances
+@compat public coordination_number, bulk_coordination
+@compat public center_of_mass
+@compat public wrap, wrap_to_first
+@compat public align, align!, rmsd
 
 end
