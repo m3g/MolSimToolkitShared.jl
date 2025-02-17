@@ -41,12 +41,13 @@ has to be a matrix of size `(N,N)`.
 julia> using MolSimToolkitShared: wrap_to_first
 
 julia> uc = [10.0 0.0 0.0; 0.0 10.0 0.0; 0.0 0.0 10.0]
-  10.000   0.000   0.000
-   0.000  10.000   0.000
-   0.000   0.000  10.000
+3×3 Matrix{Float64}:
+ 10.0   0.0   0.0
+  0.0  10.0   0.0
+  0.0   0.0  10.0
 
 julia> wrap_to_first([15.0, 13.0, 2.0], uc)
-3-element SVector{3, Float64} with indices SOneTo(3):
+3-element Vector{Float64}:
  5.0
  3.0000000000000004
  2.0
