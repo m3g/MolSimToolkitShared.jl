@@ -3,7 +3,7 @@ module MolSimToolkitShared
 using Compat: @compat
 using TestItems: @testitem
 
-using LinearAlgebra: eigvecs
+using LinearAlgebra: eigvecs, norm, cross, dot
 using StaticArrays: SVector, MMatrix, SMatrix
 
 # Currently only shared function names
@@ -29,6 +29,7 @@ end
 # Utility functions
 include("./wrap.jl")
 include("./structural_alignment.jl")
+include("./dihedral.jl")
 
 # Public API
 @compat public distance, distances
@@ -36,5 +37,6 @@ include("./structural_alignment.jl")
 @compat public center_of_mass
 @compat public wrap, wrap_to_first
 @compat public align, align!, rmsd
+@compat public dihedral, dihedrals
 
 end
