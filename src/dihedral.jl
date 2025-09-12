@@ -109,7 +109,7 @@ element is a vector with 4 vectors. The function returns a vector with the dihed
 ## Example
 
 ```jldoctest; filter = r"([0-9]+\\.[0-9]{2})[0-9]+" => s"\\1***"
-julia> MolSimToolkitShared: dihedrals
+julia> using MolSimToolkitShared: dihedrals
 
 julia> v1 = [[-8.483, -14.912, -6.726], [-5.113, -13.737, -5.466], [-3.903, -11.262, -8.062], [-1.162, -9.64, -6.015]];
 
