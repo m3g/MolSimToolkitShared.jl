@@ -25,6 +25,7 @@ coordination_number, bulk_coordination
 center_of_mass
 wrap, wrap_to_first
 align, align!, rmsd
+dihedral, dihedrals
 ```
 
 ### Methods
