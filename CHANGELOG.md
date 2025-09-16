@@ -12,7 +12,7 @@ MolSimToolkitShared.jl Changelog
 
 Version 1.2.1
 -------------
-- ![ENHANCEMENT][badge-enhancement]: add precompilation statements.
+- ![ENHANCEMENT][badge-enhancement] add precompilation statements.
 - ![INFO][badge-info] Update CI action files.
 
 Version 1.2.0
