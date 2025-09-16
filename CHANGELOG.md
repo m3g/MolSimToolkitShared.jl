@@ -10,7 +10,7 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
-Version 1.2.2-DEV
+Version 1.2.2
 -------------
 - ![INFO][badge-info] Update CI action files.
 - ![INFO][badge-info] proper call to precompmilation directives.
