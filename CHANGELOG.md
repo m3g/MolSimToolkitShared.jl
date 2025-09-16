@@ -13,6 +13,7 @@ MolSimToolkitShared.jl Changelog
 Version 1.2.2-DEV
 -------------
 - ![INFO][badge-info] Update CI action files.
+- ![INFO][badge-info] proper call to precompmilation directives.
 
 Version 1.2.1
 -------------
