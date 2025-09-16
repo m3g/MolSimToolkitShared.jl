@@ -12,6 +12,7 @@ MolSimToolkitShared.jl Changelog
 
 Version 1.2.2-DEV
 -------------
+- ![INFO][badge-info] Update CI action files.
 
 Version 1.2.1
 -------------
