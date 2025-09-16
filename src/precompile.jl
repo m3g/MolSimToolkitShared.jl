@@ -1,22 +1,36 @@
 PrecompileTools.@setup_workload begin
     # Putting some things in `@setup_workload` instead of `@compile_workload` can reduce the size of the
     # precompile file and potentially make loading faster.
-    
-
-    dir = "$(Testing.data_dir)/NAMD"
-    atoms = PDBTools.readPDB("$dir/structure.pdb", "protein or resname TMAO")
-    prot = PDBTools.select(atoms, "protein and resnum < 4")
-    tmao = PDBTools.select(atoms, "resname TMAO and resnum <= 2")
+    x64 = SVector(1.0, 2.0, 3.0)
+    y64 = SVector(4.0, 5.0, 6.0)
+    z64 = SVector(7.0, 8.0, 9.0)
+    w64 = SVector(3.0, 2.0, 1.0)
+    x32 = SVector(1.0f0, 2.0f0, 3.0f0)
+    y32 = SVector(4.0f0, 5.0f0, 6.0f0)
+    z32 = SVector(7.0f0, 8.0f0, 9.0f0)
+    w32 = SVector(3.0f0, 2.0f0, 1.0f0)
+    uc64  = SMatrix{3,3,Float64,9}( 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
+    uc32  = SMatrix{3,3,Float32,9}( 1.0f0, 0.0f0, 0.0f0, 0.0f0, 1.0f0, 0.0f0, 0.0f0, 0.0f0, 1.0f0)
+    sides64 = SVector(1.0, 1.0, 1.0)
+    sides32 = SVector(1.0f0, 1.0f0, 1.0f0)
     PrecompileTools.@compile_workload begin
-        options = Options(lastframe=1, silent=true, n_random_samples=1)
-        solute = AtomSelection(prot, nmols=1)
-        solvent = AtomSelection(tmao, natomspermol=14)
-        trajectory_file = "$dir/trajectory.dcd"
-        R = mddf(trajectory_file, solute, solvent, options)
-        rc = ResidueContributions(R, prot; silent=true)
-        R = mddf(trajectory_file, solvent, options)
-        tmpfile = tempname()
-        save(tmpfile, R)
-        load(tmpfile)
+        align([x64, y64, z64], [y64, z64, w64])
+        align([x32, y32, z32], [y32, z32, w32])
+        center_of_mass([x64, y64], [1.0, 2.0])
+        center_of_mass([x32, y32], [1.0f0, 2.0f0])
+        dihedral(x64, y64, w64, z64)
+        dihedral(x32, y32, w32, z32)
+        dihedrals([[x64, y64, w64, z64],[x64, y64, w64, z64]])
+        dihedrals([[x32, y32, w32, z32],[x32, y32, w32, z32]])
+        rmsd([x32, y32, z32],[y32, z32, w32])
+        rmsd([x64, y64, z64],[y64, z64, w64])
+        wrap(x64, y64, uc64)
+        wrap(x32, y32, uc32)
+        wrap(x32, y32, uc64)
+        wrap(x64, y64, sides64)
+        wrap(x32, y32, sides64)
+        wrap_to_first(x32, uc32)
+        wrap_to_first(x64, uc64)
+        wrap_to_first(x32, uc64)
     end
 end
