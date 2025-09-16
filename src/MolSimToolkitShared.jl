@@ -1,5 +1,6 @@
 module MolSimToolkitShared
 
+import PrecompileTools
 using Compat: @compat
 using TestItems: @testitem
 
@@ -38,5 +39,8 @@ include("./dihedral.jl")
 @compat public wrap, wrap_to_first
 @compat public align, align!, rmsd
 @compat public dihedral, dihedrals
+
+# Precompilation tools
+include("precompile.jl")
 
 end
