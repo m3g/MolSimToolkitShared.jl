@@ -24,7 +24,7 @@ distance, distances
 coordination_number, bulk_coordination
 center_of_mass
 wrap, wrap_to_first
-align, align!, rmsd
+align, align!, rmsd, alignment_movements, apply_alignment_transformations!
 dihedral, dihedrals
 ```
 
