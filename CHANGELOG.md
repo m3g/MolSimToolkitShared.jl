@@ -10,7 +10,7 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
-Version 1.3.0-DEV
+Version 1.3.0
 -------------
 - ![FEATURE][badge-feature]: split alignment functions to expose `alignment_movements` and `apply_alignment_transformations!` functions.
 
