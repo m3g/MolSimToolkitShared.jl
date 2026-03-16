@@ -29,7 +29,7 @@ julia> center_of_mass(x, [1.0, 2.0, 3.0]) # providing masses
 
 ```
 
-""" 
+"""
 center_of_mass(x::AbstractVector{<:AbstractVector}) = center_of_mass(x, nothing)
 center_of_mass(x::AbstractVector{<:AbstractVector}, ::Nothing) = sum(x) / length(x)
 center_of_mass(x::AbstractVector{<:AbstractVector}, mass::AbstractVector) =
@@ -70,16 +70,13 @@ function rmsd(x::AbstractVector{<:AbstractVector}, y::AbstractVector{<:AbstractV
 end
 
 """
-    align(x, y; mass = nothing)
-    align!(x, y; mass = nothing)
+    align(x, y; mass=nothing)
+    align!(x, y; mass=nothing)
 
-Aligns two structures (sets of points in 3D space). Solves
-the "Procrustes" problem, which is to find the best
-translation, and rotation, that aligns the two
-structures, minimizing the RMSD between them.
+Aligns two structures (sets of points in 3D space). Solves the "Procrustes" problem, which is to find the best
+translation, and rotation, that aligns the two structures, minimizing the RMSD between them.
 
-Structures are expected to be of the same size, and the 
-correspondence is assumed from the vector indices. 
+Structures are expected to be of the same size, and the correspondence is assumed from the vector indices. 
 
 `align` returns a new vector containing the coordinates of x aligned to y. 
 `align!` modifies the input vector `x` in place.
@@ -97,13 +94,41 @@ function align(
     return align!(xnew, y; mass)
 end
 
-function align!(
+"""
+    apply_alignment_transformation!(x, cmx, cmy, rotation_matrix)
+
+Translates and rotates `x` such that the coordinates `cmx` are moved to `cmy`, and
+such apply the rotation defined in `rotation_matrix`. 
+
+"""
+function apply_alignment_transformation!(x, cmx, cmy, rotation_matrix)
+    for i in eachindex(x)
+        x[i] = rotation_matrix * (x[i] - cmx) + cmy
+    end
+    return x
+end
+
+"""
+    alignment_movements(
+        x::AbstractVector{<:AbstractVector},
+        y::AbstractVector{<:AbstractVector};
+        mass=nothing,
+        xm=zeros(3, length(x)),
+        xp=zeros(3, length(x)),
+    )
+    
+Returns `cmx`, `cmy`, and `rotation_matrix`, necessary to translate and rotate y to minimize the RMSD relative to x.
+
+Can be used to obtain the movement that aligns two sets of points, of the same size, and apply these movements to 
+another set of points.
+
+"""
+function alignment_movements(
     x::AbstractVector{<:AbstractVector},
     y::AbstractVector{<:AbstractVector};
     mass=nothing,
-    # Auxiliary arrays that might be preallocated
     xm=zeros(3, length(x)),
-    xp=zeros(3, length(x))
+    xp=zeros(3, length(x)),
 )
     length(x) == length(y) || throw(DimensionMismatch("x and y must have the same length"))
     (length(x[1]) != 3 || length(x[2]) != 3) && throw(DimensionMismatch("x and y must be 3D vectors"))
@@ -157,17 +182,25 @@ function align!(
     u[3, 3] = v[1, 1]^2 + v[4, 1]^2 - v[2, 1]^2 - v[3, 1]^2
     u = SMatrix(u)
 
-    # Rotate to align x to y 
-    for i in eachindex(x)
-        x[i] = u * x[i]
-    end
-
-    # Move aligned x to the original center of mass of y
+    # Restore arrays
     for i in eachindex(x, y)
-        x[i] += cmy
+        x[i] += cmx
         y[i] += cmy
     end
 
+    return cmx, cmy, u
+end
+
+function align!(
+    x::AbstractVector{<:AbstractVector},
+    y::AbstractVector{<:AbstractVector};
+    mass=nothing,
+    # Auxiliary arrays that might be preallocated
+    xm=zeros(3, length(x)),
+    xp=zeros(3, length(x))
+)
+    cmx, cmy, u = alignment_movements(x, y; mass, xm, xp)
+    apply_alignment_transformation!(x, cmx, cmy, u)
     return x
 end
 
@@ -176,7 +209,7 @@ end
     using StaticArrays: SVector
     using Rotations: RotMatrix3
 
-    x = [ rand(SVector{3,Float64}) for _ in 1:10 ]
+    x = [rand(SVector{3,Float64}) for _ in 1:10]
     @test center_of_mass(x) ≈ sum(x) / length(x)
 
     y = x .+ Ref(SVector{3}(1, 1, 1))

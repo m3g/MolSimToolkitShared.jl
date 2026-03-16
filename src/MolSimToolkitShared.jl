@@ -37,7 +37,7 @@ include("./dihedral.jl")
 @compat public coordination_number, bulk_coordination
 @compat public center_of_mass
 @compat public wrap, wrap_to_first
-@compat public align, align!, rmsd
+@compat public align, align!, rmsd, alignment_movements, apply_alignment_transformation!
 @compat public dihedral, dihedrals
 
 # Precompilation tools
