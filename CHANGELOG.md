@@ -10,6 +10,9 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
+Version 1.4.1-DEV
+-------------
+
 Version 1.4.0
 -------------
 - ![FEATURE][badge-feature]: add `positions` as a public shared function.
