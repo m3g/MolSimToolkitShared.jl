@@ -11,6 +11,7 @@ using StaticArrays: SVector, MMatrix, SMatrix
 function distance end
 function distances end
 function bulk_coordination end
+function positions end
 
 function coordination_number(::String, args...; kargs...)
     throw(ArgumentError("""\n
@@ -34,6 +35,7 @@ include("./dihedral.jl")
 
 # Public API
 @compat public distance, distances
+@compat positions
 @compat public coordination_number, bulk_coordination
 @compat public center_of_mass
 @compat public wrap, wrap_to_first

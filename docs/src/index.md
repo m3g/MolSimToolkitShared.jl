@@ -21,6 +21,7 @@ These function names are considered public:
 
 ```
 distance, distances
+positions
 coordination_number, bulk_coordination
 center_of_mass
 wrap, wrap_to_first
