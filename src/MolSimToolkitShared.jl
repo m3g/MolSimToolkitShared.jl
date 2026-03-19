@@ -11,11 +11,21 @@ using StaticArrays: SVector, MMatrix, SMatrix
 function distance end
 function distances end
 function bulk_coordination end
+function positions end
+
+@testitem "shared names" begin
+    if VERSION >= v"1.11"
+        @test Base.ispublic(MolSimToolkitShared, :distance)
+        @test Base.ispublic(MolSimToolkitShared, :distances)
+        @test Base.ispublic(MolSimToolkitShared, :bulk_coordination)
+        @test Base.ispublic(MolSimToolkitShared, :positions)
+    end
+end
 
 function coordination_number(::String, args...; kargs...)
     throw(ArgumentError("""\n
         Invalid arguments for the `coordination_number` function.
-        Plese check the documentation for the correct call signature, by typing:
+        Please check the documentation for the correct call signature, by typing:
 
         julia> ? coordination_number
 
@@ -34,6 +44,7 @@ include("./dihedral.jl")
 
 # Public API
 @compat public distance, distances
+@compat public positions
 @compat public coordination_number, bulk_coordination
 @compat public center_of_mass
 @compat public wrap, wrap_to_first
