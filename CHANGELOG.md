@@ -10,6 +10,9 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
+Version 1.5.1-DEV
+-------------
+
 Version 1.5.0
 -------------
 - ![FEATURE][badge-feature] add `get_atoms` as a public shared function.
