@@ -27,6 +27,7 @@ center_of_mass
 wrap, wrap_to_first
 align, align!, rmsd, alignment_movements, apply_alignment_transformations!
 dihedral, dihedrals
+get_atoms
 ```
 
 ### Methods
