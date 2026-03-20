@@ -12,6 +12,7 @@ function distance end
 function distances end
 function bulk_coordination end
 function positions end
+function get_atoms end
 
 @testitem "shared names" begin
     if VERSION >= v"1.11"
@@ -19,6 +20,7 @@ function positions end
         @test Base.ispublic(MolSimToolkitShared, :distances)
         @test Base.ispublic(MolSimToolkitShared, :bulk_coordination)
         @test Base.ispublic(MolSimToolkitShared, :positions)
+        @test Base.ispublic(MolSimToolkitShared, :get_atoms)
     end
 end
 
@@ -50,6 +52,7 @@ include("./dihedral.jl")
 @compat public wrap, wrap_to_first
 @compat public align, align!, rmsd, alignment_movements, apply_alignment_transformation!
 @compat public dihedral, dihedrals
+@compat public get_atoms
 
 # Precompilation tools
 include("precompile.jl")

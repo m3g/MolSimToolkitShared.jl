@@ -10,16 +10,17 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
-Version 1.4.1-DEV
+Version 1.5.0
 -------------
+- ![FEATURE][badge-feature] add `get_atoms` as a public shared function.
 
 Version 1.4.0
 -------------
-- ![FEATURE][badge-feature]: add `positions` as a public shared function.
+- ![FEATURE][badge-feature] add `positions` as a public shared function.
 
 Version 1.3.0
 -------------
-- ![FEATURE][badge-feature]: split alignment functions to expose `alignment_movements` and `apply_alignment_transformations!` functions.
+- ![FEATURE][badge-feature] split alignment functions to expose `alignment_movements` and `apply_alignment_transformations!` functions.
 
 Version 1.2.1
 -------------
@@ -28,5 +29,5 @@ Version 1.2.1
 
 Version 1.2.0
 -------------
-- ![FEATURE][badge-feature]: add `dihedral` and `dihedrals` functions.
+- ![FEATURE][badge-feature] add `dihedral` and `dihedrals` functions.
 - ![INFO][badge-info] add CHANGELOG.md file and CI run.
