@@ -10,8 +10,9 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
-Version 1.5.1-DEV
+Version 1.5.1
 -------------
+- ![FIX][badge-fix] `coordination_number` with string first argument does not throw anymore, instead the fully non-specialized call throws the argument error.
 
 Version 1.5.0
 -------------
