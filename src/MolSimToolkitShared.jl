@@ -24,7 +24,7 @@ function get_atoms end
     end
 end
 
-function coordination_number(::String, args...; kargs...)
+function coordination_number(args...; kargs...)
     throw(ArgumentError("""\n
         Invalid arguments for the `coordination_number` function.
         Please check the documentation for the correct call signature, by typing:
@@ -35,7 +35,7 @@ function coordination_number(::String, args...; kargs...)
 end
 @testitem "coordination_number" begin
     import MolSimToolkitShared: coordination_number
-    # The coordination_number(::String, args...; kargs...) is a placeholder for the docs only
+    # The coordination_number(args...; kargs...) is a placeholder for the docs only
     @test_throws ArgumentError coordination_number("string.txt", 1.0)
 end
 
