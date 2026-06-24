@@ -10,8 +10,9 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
-Version 1.5.2-DEV
+Version 1.6.0
 -------------
+- ![FEATURE][badge-feature] add `save` and `load` to public shared function names.
 
 Version 1.5.1
 -------------
