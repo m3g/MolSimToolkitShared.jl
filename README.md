@@ -6,9 +6,12 @@
 
 # MolSimToolkitShared
 
-This package is a placeholder for functions that will be shared
-among other packages. The packages must import the functions
-from here for optimal interoperability.
+This package is a placeholder for functions that are shared
+among other packages. The functions are now defined in
+[PDBToolsBase.jl](https://github.com/m3g/PDBToolsBase.jl), and imported
+from there, such that packages that depend on MolSimToolkitShared and
+packages that depend on PDBToolsBase extend the same functions. New code
+should depend on PDBToolsBase directly.
 
 See [the documentation](https://m3g.github.io/MolSimToolkitShared.jl)
 

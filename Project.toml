@@ -1,33 +1,28 @@
 name = "MolSimToolkitShared"
 uuid = "aea21201-7910-416e-b888-414710bebccb"
 authors = ["Leandro Martinez <lmartine@unicamp.br> and contributors"]
-version = "1.6.1-DEV"
+version = "1.7.0-DEV"
 
 [deps]
-Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
-PrecompileTools = "aea7be01-6a6a-4083-8856-8a6e6704d82a"
-StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+PDBToolsBase = "c8914394-62c2-4233-bff1-d1ad7c5159d7"
 TestItems = "1c621080-faea-4a02-84b6-bbd5e436b8fe"
+
+[sources]
+# Until PDBToolsBase is registered (https://github.com/JuliaRegistries/General/pull/173108)
+PDBToolsBase = {url = "https://github.com/m3g/PDBToolsBase.jl", rev = "main"}
 
 [compat]
 Aqua = "0.8"
-Compat = "4"
-LinearAlgebra = "1.6"
-PrecompileTools = "1.2.1"
-Rotations = "1"
-StaticArrays = "1.9.15"
-Test = "1.9"
+PDBToolsBase = "1"
+Test = "1.11"
 TestItemRunner = "1.1"
 TestItems = "1"
-julia = "1.9"
+julia = "1.11"
 
 [extras]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
-Rotations = "6038ab10-8711-5258-84ad-4b1120ba62dc"
-StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestItemRunner = "f8b46487-2199-4994-9208-9a1283c18c0a"
 
 [targets]
-test = ["Aqua", "Test", "TestItemRunner", "Rotations", "StaticArrays"]
+test = ["Aqua", "Test", "TestItemRunner"]

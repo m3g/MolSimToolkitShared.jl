@@ -1,66 +1,59 @@
+"""
+    MolSimToolkitShared
+
+The shared function names and utilities of the ecosystem (MolSimToolkit.jl, PDBTools.jl,
+ComplexMixtures.jl, Packmol.jl) are now defined in PDBToolsBase.jl. This package imports them
+from there, such that packages that depend on MolSimToolkitShared and packages that depend on
+PDBToolsBase extend the same functions. New code should depend on PDBToolsBase directly.
+"""
 module MolSimToolkitShared
 
-import PrecompileTools
-using Compat: @compat
 using TestItems: @testitem
 
-using LinearAlgebra: eigvecs, norm, cross, dot
-using StaticArrays: SVector, MMatrix, SMatrix
+# The shared functions are those of PDBToolsBase
+import PDBToolsBase: distance, distances
+import PDBToolsBase: positions
+import PDBToolsBase: coordination_number
+import PDBToolsBase: center_of_mass
+import PDBToolsBase: wrap, wrap_to_first
+import PDBToolsBase: align, align!, rmsd, alignment_movements, apply_alignment_transformation!
+import PDBToolsBase: dihedral, dihedrals
+import PDBToolsBase: get_atoms
+import PDBToolsBase: save, load
 
-# Currently only shared function names
-function distance end
-function distances end
+# Not part of PDBToolsBase: only MolSimToolkit.jl defines methods for it
 function bulk_coordination end
-function positions end
-function get_atoms end
-function save end
-function load end
+
+# Public API
+public distance, distances
+public positions
+public coordination_number, bulk_coordination
+public center_of_mass
+public wrap, wrap_to_first
+public align, align!, rmsd, alignment_movements, apply_alignment_transformation!
+public dihedral, dihedrals
+public get_atoms
+public save
+public load
 
 @testitem "shared names" begin
-    if VERSION >= v"1.11"
-        @test Base.ispublic(MolSimToolkitShared, :distance)
-        @test Base.ispublic(MolSimToolkitShared, :distances)
-        @test Base.ispublic(MolSimToolkitShared, :bulk_coordination)
-        @test Base.ispublic(MolSimToolkitShared, :positions)
-        @test Base.ispublic(MolSimToolkitShared, :get_atoms)
-        @test Base.ispublic(MolSimToolkitShared, :save)
-        @test Base.ispublic(MolSimToolkitShared, :load)
+    import PDBToolsBase
+    for name in (
+        :distance, :distances, :positions, :coordination_number, :center_of_mass,
+        :wrap, :wrap_to_first, :align, :align!, :rmsd, :alignment_movements,
+        :apply_alignment_transformation!, :dihedral, :dihedrals, :get_atoms, :save, :load,
+    )
+        @test Base.ispublic(MolSimToolkitShared, name)
+        # the same function object as in PDBToolsBase
+        @test getfield(MolSimToolkitShared, name) === getfield(PDBToolsBase, name)
     end
+    @test Base.ispublic(MolSimToolkitShared, :bulk_coordination)
 end
 
-function coordination_number(args...; kargs...)
-    throw(ArgumentError("""\n
-        Invalid arguments for the `coordination_number` function.
-        Please check the documentation for the correct call signature, by typing:
-
-        julia> ? coordination_number
-
-    """))
-end
 @testitem "coordination_number" begin
     import MolSimToolkitShared: coordination_number
     # The coordination_number(args...; kargs...) is a placeholder for the docs only
     @test_throws ArgumentError coordination_number("string.txt", 1.0)
 end
-
-# Utility functions
-include("./wrap.jl")
-include("./structural_alignment.jl")
-include("./dihedral.jl")
-
-# Public API
-@compat public distance, distances
-@compat public positions
-@compat public coordination_number, bulk_coordination
-@compat public center_of_mass
-@compat public wrap, wrap_to_first
-@compat public align, align!, rmsd, alignment_movements, apply_alignment_transformation!
-@compat public dihedral, dihedrals
-@compat public get_atoms
-@compat public save
-@compat public load
-
-# Precompilation tools
-include("precompile.jl")
 
 end
