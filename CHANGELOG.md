@@ -10,8 +10,10 @@ MolSimToolkitShared.jl Changelog
 [badge-fix]: https://img.shields.io/badge/Fix-purple.svg
 [badge-info]: https://img.shields.io/badge/Info-gray.svg
 
-Version 1.6.1-DEV
+Version 1.7.0-DEV
 -------------
+- ![INFO][badge-info] The shared functions (`distance`, `distances`, `positions`, `coordination_number`, `center_of_mass`, `wrap`, `wrap_to_first`, `align`, `align!`, `rmsd`, `alignment_movements`, `apply_alignment_transformation!`, `dihedral`, `dihedrals`, `get_atoms`, `save`, `load`) are now imported from [PDBToolsBase.jl](https://github.com/m3g/PDBToolsBase.jl), such that packages that depend on MolSimToolkitShared and packages that depend on PDBToolsBase extend the same functions. `bulk_coordination` remains defined here. New code should depend on PDBToolsBase directly.
+- ![INFO][badge-info] Requires Julia 1.11 or later (as PDBToolsBase).
 
 Version 1.6.0
 -------------

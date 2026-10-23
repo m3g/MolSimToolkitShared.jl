@@ -2,3 +2,8 @@
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 LiveServer = "16fef848-5104-11e9-1b77-fb7a48bbb589"
 MolSimToolkitShared = "aea21201-7910-416e-b888-414710bebccb"
+PDBToolsBase = "c8914394-62c2-4233-bff1-d1ad7c5159d7"
+
+[sources]
+# Until PDBToolsBase is registered (https://github.com/JuliaRegistries/General/pull/173108)
+PDBToolsBase = {url = "https://github.com/m3g/PDBToolsBase.jl", rev = "main"}
